@@ -2,6 +2,8 @@
 
 return [
 
+    'super_admin_name' => 'Administrator',
+
     /*
     |--------------------------------------------------------------------------
     | Application Name

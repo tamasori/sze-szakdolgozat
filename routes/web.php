@@ -13,6 +13,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+//Auth routes
+Route::group([
+    "middleware" => "guest",
+    "as" => "auth."
+], function (){
+    Route::get("login", [\App\Http\Controllers\Auth\LoginController::class,"index"])->name("login");
+    Route::post("login", [\App\Http\Controllers\Auth\LoginController::class,"login"])->name("login.post");
+    Route::get("reset-password", [])->name("reset-password");
+    Route::post("reset-password", [])->name("reset-password.post");
 });
+
+//Dashboard route
+Route::get("dashboard", [])->name("dashboard");
+
+
+//Redirections
+Route::redirect('/',"dashboard");
