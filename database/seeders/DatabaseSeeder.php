@@ -14,5 +14,9 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         (new UserTableSeeder())->run();
+        (new ColorsTableSeeder())->run();
+        (new FuelTypeTableSeeder())->run();
+        (new CarsSeeder())->run();
+        (new EwcCodeSeeder())->run();
     }
 }

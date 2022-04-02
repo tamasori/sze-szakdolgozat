@@ -15,8 +15,8 @@ use App\Models\InspectionRecord;
 use App\Models\Inspector;
 use App\Models\Part;
 use App\Models\PredefinedAnswer;
+use App\Models\Preset;
 use App\Models\Quality;
-use App\Models\Sale;
 use App\Models\WorkshopMachinery;
 use App\Policies\CarMakePolicy;
 use App\Policies\CarModelPolicy;
@@ -31,8 +31,8 @@ use App\Policies\InspectionRecordPolicy;
 use App\Policies\InspectorPolicy;
 use App\Policies\PartPolicy;
 use App\Policies\PredefinedAnswerPolicy;
+use App\Policies\PresetPolicy;
 use App\Policies\QualityPolicy;
-use App\Policies\SalePolicy;
 use App\Policies\WorkshopMachineryPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
@@ -59,7 +59,7 @@ class AuthServiceProvider extends ServiceProvider
         Part::class => PartPolicy::class,
         PredefinedAnswer::class => PredefinedAnswerPolicy::class,
         Quality::class => QualityPolicy::class,
-        Sale::class => SalePolicy::class,
+        Preset::class => PresetPolicy::class,
         WorkshopMachinery::class => WorkshopMachineryPolicy::class
     ];
 

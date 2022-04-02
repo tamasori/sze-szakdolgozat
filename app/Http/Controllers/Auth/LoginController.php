@@ -19,7 +19,7 @@ class LoginController
             return redirect()->route("dashboard");
         } else {
             return redirect()->route("auth.login")
-                             ->withErrors(["A megadott felhasználónév és jelszó páros nem található a rendszerben!"]);
+                             ->withErrors([__("auth.failed")]);
         }
     }
 }

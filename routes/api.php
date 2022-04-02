@@ -23,6 +23,11 @@ Route::group(
     ],
     function (){
         Route::post("/login",[\App\Http\Controllers\Api\v1\LoginController::class,"login"])->name("login");
+        Route::get("/zip-decode/{zipcode?}",[\App\Http\Controllers\Api\v1\ZipCodeDecodeController::class,"decode"])->name("zip.decode");
+        Route::get("/kuj-decoder/{search?}",[\App\Http\Controllers\Api\v1\KUJDecoderController::class,"search"])->name("kuj.decode");
+        Route::get("/kuj-decoder/details/{kuj_number?}",[\App\Http\Controllers\Api\v1\KUJDecoderController::class,"details"])->name("kuj.details");
+        Route::delete("cars/delete-file/{file}",[\App\Http\Controllers\Api\v1\CarsController::class,"deleteFile"])->name("cars.delete-file");
+
 
         Orion::resource('predefined-answers', PredefinedAnswersController::class);
         Orion::resource('car-makes', \App\Http\Controllers\Api\v1\CarMakesController::class);
@@ -38,7 +43,8 @@ Route::group(
         Orion::resource('inspectors', \App\Http\Controllers\Api\v1\InspectorsController::class);
         Orion::resource('parts', \App\Http\Controllers\Api\v1\PartsController::class);
         Orion::resource('qualities', \App\Http\Controllers\Api\v1\QualitiesController::class);
-        Orion::resource('sales', \App\Http\Controllers\Api\v1\SalesController::class);
+        Orion::resource('substances', \App\Http\Controllers\Api\v1\SubstancesController::class);
+        Orion::resource('presets', \App\Http\Controllers\Api\v1\PresetsController::class);
         Orion::resource('workshop-machineries', \App\Http\Controllers\Api\v1\WorkshopMachineriesController::class);
     }
 );

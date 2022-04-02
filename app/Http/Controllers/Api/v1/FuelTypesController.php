@@ -8,9 +8,12 @@ use App\Models\Enquiry;
 use App\Models\Export;
 use App\Models\FuelType;
 use Illuminate\Http\Request;
+use Orion\Concerns\DisablePagination;
 use Orion\Http\Controllers\Controller;
 
 class FuelTypesController extends Controller
 {
+    use DisablePagination;
+
     protected $model = FuelType::class;
 }

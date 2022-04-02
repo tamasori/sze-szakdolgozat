@@ -18,7 +18,7 @@ class EwcCodePolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -30,7 +30,8 @@ class EwcCodePolicy
      */
     public function view(User $user, EwcCode $ewcCode)
     {
-        //
+        return true;
+
     }
 
     /**
@@ -41,7 +42,8 @@ class EwcCodePolicy
      */
     public function create(User $user)
     {
-        //
+        return true;
+
     }
 
     /**
@@ -53,7 +55,8 @@ class EwcCodePolicy
      */
     public function update(User $user, EwcCode $ewcCode)
     {
-        //
+        return true;
+
     }
 
     /**
@@ -65,7 +68,8 @@ class EwcCodePolicy
      */
     public function delete(User $user, EwcCode $ewcCode)
     {
-        //
+        return true;
+
     }
 
     /**
@@ -77,7 +81,8 @@ class EwcCodePolicy
      */
     public function restore(User $user, EwcCode $ewcCode)
     {
-        //
+        return true;
+
     }
 
     /**
@@ -89,6 +94,7 @@ class EwcCodePolicy
      */
     public function forceDelete(User $user, EwcCode $ewcCode)
     {
-        //
+        return true;
+
     }
 }

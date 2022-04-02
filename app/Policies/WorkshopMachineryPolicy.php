@@ -18,7 +18,7 @@ class WorkshopMachineryPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -30,7 +30,7 @@ class WorkshopMachineryPolicy
      */
     public function view(User $user, WorkshopMachinery $workshopMachinery)
     {
-        //
+        return true;
     }
 
     /**
@@ -41,7 +41,7 @@ class WorkshopMachineryPolicy
      */
     public function create(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -53,7 +53,7 @@ class WorkshopMachineryPolicy
      */
     public function update(User $user, WorkshopMachinery $workshopMachinery)
     {
-        //
+        return true;
     }
 
     /**
@@ -65,7 +65,7 @@ class WorkshopMachineryPolicy
      */
     public function delete(User $user, WorkshopMachinery $workshopMachinery)
     {
-        //
+        return true;
     }
 
     /**
@@ -77,7 +77,7 @@ class WorkshopMachineryPolicy
      */
     public function restore(User $user, WorkshopMachinery $workshopMachinery)
     {
-        //
+        return true;
     }
 
     /**
@@ -89,6 +89,6 @@ class WorkshopMachineryPolicy
      */
     public function forceDelete(User $user, WorkshopMachinery $workshopMachinery)
     {
-        //
+        return true;
     }
 }

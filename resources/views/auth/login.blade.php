@@ -10,12 +10,12 @@
                     <a href="#" class="h1"><b>Bontó</b>Manager</a>
                 </div>
                 <div class="card-body">
-                    <p class="login-box-msg">Jelentkezz be, és tedd produktívabbá a napot!</p>
+                    <p class="login-box-msg">@lang("auth.login_box_msg")</p>
 
                     <form action="{{ route("auth.login.post") }}" method="post">
                         @csrf
                         <div class="input-group mb-3">
-                            <input type="email" name="email" class="form-control" placeholder="Email">
+                            <input type="email" name="email" class="form-control" placeholder="@lang("users.email")">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-envelope"></span>
@@ -23,7 +23,7 @@
                             </div>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="password" name="password" class="form-control" placeholder="Jelszó">
+                            <input type="password" name="password" class="form-control" placeholder="@lang("users.password")">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-lock"></span>
@@ -35,18 +35,18 @@
                                 <div class="icheck-primary">
                                     <input type="checkbox" id="remember" name="remember">
                                     <label for="remember">
-                                        Emlékezz rám
+                                        @lang("auth.remember_me")
                                     </label>
                                 </div>
                             </div>
                             <div class="col-6">
-                                <button type="submit" class="btn btn-primary btn-block">Bejelentkezés</button>
+                                <button type="submit" class="btn btn-primary btn-block">@lang("misc.login")</button>
                             </div>
                         </div>
                     </form>
 
                     <p class="mb-1">
-                        <a href="{{ route("auth.reset-password") }}">Elfelejtetted jelszavadat?</a>
+                        <a href="{{ route("auth.reset-password") }}">@lang("misc.forgot_password")</a>
                     </p>
                 </div>
             </div>

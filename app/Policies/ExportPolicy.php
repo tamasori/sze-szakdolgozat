@@ -18,7 +18,7 @@ class ExportPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -30,7 +30,7 @@ class ExportPolicy
      */
     public function view(User $user, Export $export)
     {
-        //
+        return true;
     }
 
     /**
@@ -41,7 +41,7 @@ class ExportPolicy
      */
     public function create(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -53,7 +53,7 @@ class ExportPolicy
      */
     public function update(User $user, Export $export)
     {
-        //
+        return true;
     }
 
     /**
@@ -65,7 +65,7 @@ class ExportPolicy
      */
     public function delete(User $user, Export $export)
     {
-        //
+        return true;
     }
 
     /**
@@ -77,7 +77,7 @@ class ExportPolicy
      */
     public function restore(User $user, Export $export)
     {
-        //
+        return true;
     }
 
     /**
@@ -89,6 +89,6 @@ class ExportPolicy
      */
     public function forceDelete(User $user, Export $export)
     {
-        //
+        return true;
     }
 }

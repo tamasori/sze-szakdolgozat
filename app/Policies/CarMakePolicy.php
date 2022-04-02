@@ -18,7 +18,7 @@ class CarMakePolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -30,7 +30,7 @@ class CarMakePolicy
      */
     public function view(User $user, CarMake $carMake)
     {
-        //
+        return true;
     }
 
     /**
@@ -41,7 +41,7 @@ class CarMakePolicy
      */
     public function create(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -53,7 +53,7 @@ class CarMakePolicy
      */
     public function update(User $user, CarMake $carMake)
     {
-        //
+        return true;
     }
 
     /**
@@ -65,7 +65,7 @@ class CarMakePolicy
      */
     public function delete(User $user, CarMake $carMake)
     {
-        //
+        return true;
     }
 
     /**
@@ -77,7 +77,7 @@ class CarMakePolicy
      */
     public function restore(User $user, CarMake $carMake)
     {
-        //
+        return true;
     }
 
     /**
@@ -89,6 +89,6 @@ class CarMakePolicy
      */
     public function forceDelete(User $user, CarMake $carMake)
     {
-        //
+        return true;
     }
 }

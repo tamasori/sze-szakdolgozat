@@ -18,7 +18,7 @@ class InspectionRecordPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -30,7 +30,7 @@ class InspectionRecordPolicy
      */
     public function view(User $user, InspectionRecord $inspectionRecord)
     {
-        //
+        return true;
     }
 
     /**
@@ -41,7 +41,7 @@ class InspectionRecordPolicy
      */
     public function create(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -53,7 +53,7 @@ class InspectionRecordPolicy
      */
     public function update(User $user, InspectionRecord $inspectionRecord)
     {
-        //
+        return true;
     }
 
     /**
@@ -65,7 +65,7 @@ class InspectionRecordPolicy
      */
     public function delete(User $user, InspectionRecord $inspectionRecord)
     {
-        //
+        return true;
     }
 
     /**
@@ -77,7 +77,7 @@ class InspectionRecordPolicy
      */
     public function restore(User $user, InspectionRecord $inspectionRecord)
     {
-        //
+        return true;
     }
 
     /**
@@ -89,6 +89,6 @@ class InspectionRecordPolicy
      */
     public function forceDelete(User $user, InspectionRecord $inspectionRecord)
     {
-        //
+        return true;
     }
 }

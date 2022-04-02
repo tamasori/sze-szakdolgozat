@@ -18,7 +18,7 @@ class InspectorPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -30,7 +30,7 @@ class InspectorPolicy
      */
     public function view(User $user, Inspector $inspector)
     {
-        //
+        return true;
     }
 
     /**
@@ -41,7 +41,7 @@ class InspectorPolicy
      */
     public function create(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -53,7 +53,7 @@ class InspectorPolicy
      */
     public function update(User $user, Inspector $inspector)
     {
-        //
+        return true;
     }
 
     /**
@@ -65,7 +65,7 @@ class InspectorPolicy
      */
     public function delete(User $user, Inspector $inspector)
     {
-        //
+        return true;
     }
 
     /**
@@ -77,7 +77,7 @@ class InspectorPolicy
      */
     public function restore(User $user, Inspector $inspector)
     {
-        //
+        return true;
     }
 
     /**
@@ -89,6 +89,6 @@ class InspectorPolicy
      */
     public function forceDelete(User $user, Inspector $inspector)
     {
-        //
+        return true;
     }
 }

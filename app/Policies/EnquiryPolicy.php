@@ -18,7 +18,7 @@ class EnquiryPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -30,7 +30,7 @@ class EnquiryPolicy
      */
     public function view(User $user, Enquiry $enquiry)
     {
-        //
+        return true;
     }
 
     /**
@@ -41,7 +41,7 @@ class EnquiryPolicy
      */
     public function create(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -53,7 +53,7 @@ class EnquiryPolicy
      */
     public function update(User $user, Enquiry $enquiry)
     {
-        //
+        return true;
     }
 
     /**
@@ -65,7 +65,7 @@ class EnquiryPolicy
      */
     public function delete(User $user, Enquiry $enquiry)
     {
-        //
+        return true;
     }
 
     /**
@@ -77,7 +77,7 @@ class EnquiryPolicy
      */
     public function restore(User $user, Enquiry $enquiry)
     {
-        //
+        return true;
     }
 
     /**
@@ -89,6 +89,6 @@ class EnquiryPolicy
      */
     public function forceDelete(User $user, Enquiry $enquiry)
     {
-        //
+        return true;
     }
 }

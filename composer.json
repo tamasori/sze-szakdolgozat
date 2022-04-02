@@ -5,8 +5,10 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "require": {
-        "php": "^7.3|^8.0",
-        "barryvdh/laravel-dompdf": "^0.9.0",
+        "php": "^7.4|^8.0",
+        "ext-json": "*",
+        "barryvdh/laravel-dompdf": "^1.0",
+        "carlos-meneses/laravel-mpdf": "^2.1",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
@@ -15,13 +17,14 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "maatwebsite/excel": "^3.1",
+        "power-components/livewire-powergrid": "^2.3",
+        "rappasoft/laravel-livewire-tables": "^1.16",
         "spatie/laravel-backup": "^6.16",
-        "spatie/laravel-medialibrary": "^9.0.0",
+        "spatie/laravel-medialibrary": "^9.8",
         "spatie/laravel-permission": "^4.0",
         "spatie/laravel-ray": "^1.17",
         "spatie/laravel-searchable": "^1.9",
-        "tailflow/laravel-orion": "^2.0",
-      "ext-json": "*"
+        "tailflow/laravel-orion": "^2.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

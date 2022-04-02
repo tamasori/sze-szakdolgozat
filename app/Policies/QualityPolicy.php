@@ -18,7 +18,7 @@ class QualityPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -30,7 +30,7 @@ class QualityPolicy
      */
     public function view(User $user, Quality $quality)
     {
-        //
+        return true;
     }
 
     /**
@@ -41,7 +41,7 @@ class QualityPolicy
      */
     public function create(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -53,7 +53,7 @@ class QualityPolicy
      */
     public function update(User $user, Quality $quality)
     {
-        //
+        return true;
     }
 
     /**
@@ -65,7 +65,7 @@ class QualityPolicy
      */
     public function delete(User $user, Quality $quality)
     {
-        //
+        return true;
     }
 
     /**
@@ -77,7 +77,7 @@ class QualityPolicy
      */
     public function restore(User $user, Quality $quality)
     {
-        //
+        return true;
     }
 
     /**
@@ -89,6 +89,6 @@ class QualityPolicy
      */
     public function forceDelete(User $user, Quality $quality)
     {
-        //
+        return true;
     }
 }

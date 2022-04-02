@@ -8,8 +8,15 @@ use App\Models\Enquiry;
 use App\Models\Export;
 use Illuminate\Http\Request;
 use Orion\Http\Controllers\Controller;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class CarsController extends Controller
 {
     protected $model = Car::class;
+
+
+    public function deleteFile(Request $request,Media $file){
+        $file->delete();
+        return response()->json(["message" => __("messages.delete_success")]);
+    }
 }

@@ -18,7 +18,7 @@ class FuelTypePolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -30,7 +30,7 @@ class FuelTypePolicy
      */
     public function view(User $user, FuelType $fuelType)
     {
-        //
+        return true;
     }
 
     /**
@@ -41,7 +41,7 @@ class FuelTypePolicy
      */
     public function create(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -53,7 +53,7 @@ class FuelTypePolicy
      */
     public function update(User $user, FuelType $fuelType)
     {
-        //
+        return true;
     }
 
     /**
@@ -65,7 +65,7 @@ class FuelTypePolicy
      */
     public function delete(User $user, FuelType $fuelType)
     {
-        //
+        return true;
     }
 
     /**
@@ -77,7 +77,7 @@ class FuelTypePolicy
      */
     public function restore(User $user, FuelType $fuelType)
     {
-        //
+        return true;
     }
 
     /**
@@ -89,6 +89,6 @@ class FuelTypePolicy
      */
     public function forceDelete(User $user, FuelType $fuelType)
     {
-        //
+        return true;
     }
 }
