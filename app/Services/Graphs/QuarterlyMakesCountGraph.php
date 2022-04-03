@@ -32,13 +32,13 @@ class QuarterlyMakesCountGraph
 
         $data['labels']   = $makes->flatten();
         $data['datasets'][] = [
-            'label' => Carbon::now()->year . " Q" . Carbon::now()->quarter,
+            'label' => Carbon::now()->year,
             'backgroundColor' => '#0d6efd',
             'color' => '#0d6efd',
             'data' => $thisYearData,
         ];
         $data['datasets'][] = [
-            'label' => Carbon::now()->subYear()->year . " Q" . Carbon::now()->subYear()->quarter,
+            'label' => Carbon::now()->subYear()->year,
             'backgroundColor' => '#fd7e14',
             'color' => '#fd7e14',
             'data' => $prevYearData,

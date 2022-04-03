@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-2">
-                <a class="btn btn-primary w-100 pt-5 pb-5" href="{{ route("car.create") }}">
+                <a class="btn btn-primary w-100 pt-5 pb-5" href="{{ route("material-balance-export.show", date("Y")) }}">
                     <i class="fas fa-balance-scale big-button"></i>
                     <h3 class="mt-3">@lang("dashboard.big_buttons.scale")</h3>
                 </a>

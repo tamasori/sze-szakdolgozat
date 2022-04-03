@@ -121,4 +121,7 @@ return [
             ],
         ],
     ],
+    "material_balance" => [
+        "title" => "Anyagmérleg"
+    ]
 ];

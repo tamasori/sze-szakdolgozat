@@ -76,6 +76,9 @@ Route::group([
     Route::get("waste-collection-point-export/{year}/csv",[\App\Http\Controllers\WasteCollectionPointExportController::class,"downloadCsv"])->name("waste-collection-point-export.csv");
     Route::get("waste-collection-point-export/{year}/pdf",[\App\Http\Controllers\WasteCollectionPointExportController::class,"downloadPdf"])->name("waste-collection-point-export.pdf");
 
+    Route::get("material-balance-export/{year}",[\App\Http\Controllers\MaterialBalanceExportController::class,"show"])->name("material-balance-export.show");
+    Route::get("material-balance-export/{year}/pdf",[\App\Http\Controllers\MaterialBalanceExportController::class,"downloadPdf"])->name("material-balance-export.pdf");
+
     //Redirections
     Route::redirect('/',"dashboard");
 

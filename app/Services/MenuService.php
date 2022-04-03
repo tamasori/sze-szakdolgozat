@@ -24,7 +24,7 @@ class MenuService
         foreach (self::getYears() as $year){
             $menu[$year][] = [
                 "title" => __("menu.yearly.balance",["year" => $year]),
-                "url" => "#",
+                "url" => route("material-balance-export.show", $year),
                 "icon" => "fa fa-balance-scale",
             ];
             $menu[$year][] = [
