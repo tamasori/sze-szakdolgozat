@@ -37,6 +37,9 @@ Route::group([
 
     Route::resource("ewc-code",\App\Http\Controllers\EwcCodesController::class);
 
+    Route::resource("customers",\App\Http\Controllers\CustomersController::class);
+
+
     Route::resource("preset",\App\Http\Controllers\PresetsController::class);
 
     Route::resource("machines",\App\Http\Controllers\MachinesController::class);

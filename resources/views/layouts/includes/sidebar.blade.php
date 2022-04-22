@@ -52,6 +52,14 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route("customers.index") }}" class="nav-link @if(Request::routeIs("customers.*")) active @endif">
+                        <i class="nav-icon fas fa-user-astronaut"></i>
+                        <p>
+                            @lang("customers.menu")
+                        </p>
+                    </a>
+                </li>
                 <hr class="sidebar-divider">
                 @foreach(\App\Services\MenuService::getMenuArray() as $year => $items)
                     <li class="nav-item @if(\Route::current() && \Route::current()->parameter('year') == $year ) menu-open @endif">
