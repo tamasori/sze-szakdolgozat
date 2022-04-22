@@ -39,6 +39,7 @@ Route::group([
 
     Route::resource("customers",\App\Http\Controllers\CustomersController::class);
 
+    Route::resource("enquiries",\App\Http\Controllers\EnquiriesController::class);
 
     Route::resource("preset",\App\Http\Controllers\PresetsController::class);
 
