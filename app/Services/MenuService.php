@@ -59,6 +59,11 @@ class MenuService
                 "url" => route("waste-collection-point-export.show",["year" => $year]),
                 "icon" => "fas fa-book",
             ];
+            $menu[$year][] = [
+                "title" => __("misc.whole_year_export") . " {$year}",
+                "url" => route("download-whole-year",["year" => $year]),
+                "icon" => "fas fa-download",
+            ];
         }
         return $menu;
     }

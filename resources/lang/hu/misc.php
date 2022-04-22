@@ -11,4 +11,5 @@ return [
     "all" => "Összes",
     "from" => "-tól",
     "to" => "-ig",
+    "whole_year_export" => "Éves exportálás",
 ];

@@ -66,7 +66,7 @@ class Car extends Model implements HasMedia
 
     public function carMake()
     {
-        return $this->carModel->carMake();
+        return $this->hasOneThrough(CarMake::class,CarModel::class,"id","id","car_model_id","make_id");
     }
 
     public function color()

@@ -71,9 +71,14 @@ class MaterialBalanceExportService implements \App\Interfaces\EwcExportInterface
         return null;
     }
 
+    public function pdfInstance(): \Meneses\LaravelMpdf\LaravelMpdf
+    {
+        return LaravelMpdf::loadHTML($this->tableView(true)->render());
+    }
+
     public function exportAsPdf()
     {
-        $pdf = LaravelMpdf::loadHTML($this->tableView(true)->render());
+        $pdf = $this->pdfInstance();
 
         return $pdf->download('anyagmerleg_'.$this->year.'.pdf');
     }

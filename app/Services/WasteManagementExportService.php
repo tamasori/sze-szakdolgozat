@@ -87,9 +87,14 @@ class WasteManagementExportService implements \App\Interfaces\EwcExportInterface
             ->download('hulladekgazdalkodas_'.$this->year.'.csv', \Maatwebsite\Excel\Excel::CSV);
     }
 
+    public function pdfInstance(): \Meneses\LaravelMpdf\LaravelMpdf
+    {
+        return LaravelMpdf::loadHTML($this->tableView(true)->render());
+    }
+
     public function exportAsPdf()
     {
-        $pdf = LaravelMpdf::loadHTML($this->tableView(true)->render());
+        $pdf = $this->pdfInstance();
 
         return $pdf->download('hulladekgazdalkodas_'.$this->year.'.pdf');
     }

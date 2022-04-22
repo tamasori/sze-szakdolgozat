@@ -92,9 +92,14 @@ class Ewc160106ExportService implements \App\Interfaces\EwcExportInterface
             ->download('ewc_'.$this->ewcCode->code.'_'.$this->year.'.csv', \Maatwebsite\Excel\Excel::CSV);
     }
 
+    public function pdfInstance(): \Meneses\LaravelMpdf\LaravelMpdf
+    {
+        return LaravelMpdf::loadHTML($this->tableView(true)->render());
+    }
+
     public function exportAsPdf()
     {
-        $pdf = LaravelMpdf::loadHTML($this->tableView(true)->render());
+        $pdf = $this->pdfInstance();
 
         return $pdf->download('ewc_'.$this->ewcCode->code.'_'.$this->year.'.pdf');
     }

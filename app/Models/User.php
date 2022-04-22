@@ -14,6 +14,10 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable, HasRoles, HasApiTokens;
 
+    public const ADMIN = "ADMIN";
+    public const DISPATCHER = "DISPATCHER";
+    public const MECHANIC = "MECHANIC";
+
     /**
      * The attributes that are mass assignable.
      *
@@ -23,6 +27,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role'
     ];
 
     /**

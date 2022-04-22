@@ -117,8 +117,25 @@
                         </li>
                     </ul>
                 </li>
+                <hr class="sidebar-divider">
                 <li class="nav-item">
-                    <a href="{{""/*TODO*/}}" class="nav-link danger">
+                    <a href="{{ route("predefined-answer.index") }}" class="nav-link">
+                        <i class="nav-icon fas fa-comment-alt"></i>
+                        <p>
+                            @lang("predefined-answers.menu")
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route("user.index") }}" class="nav-link">
+                        <i class="nav-icon fas fa-user"></i>
+                        <p>
+                            @lang("users.menu")
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route("logout") }}" class="nav-link danger">
                         <i class="nav-icon fas fa-sign-out-alt"></i>
                         <p>
                             @lang("auth.logout")

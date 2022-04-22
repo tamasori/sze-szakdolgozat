@@ -12,4 +12,13 @@ class PredefinedAnswer extends Model
     protected $guarded = [];
 
     public $timestamps = false;
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->type = 'normal';
+        });
+    }
 }

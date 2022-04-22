@@ -27,6 +27,9 @@ Route::group([
 Route::group([
     "middleware" => "auth",
 ],function (){
+
+    Route::get("logout", \App\Http\Controllers\Auth\LogoutController::class)->name("logout");
+
     //Dashboard route
     Route::get("dashboard", [\App\Http\Controllers\DashboardController::class,"index"])->name("dashboard");
 
@@ -79,7 +82,12 @@ Route::group([
     Route::get("material-balance-export/{year}",[\App\Http\Controllers\MaterialBalanceExportController::class,"show"])->name("material-balance-export.show");
     Route::get("material-balance-export/{year}/pdf",[\App\Http\Controllers\MaterialBalanceExportController::class,"downloadPdf"])->name("material-balance-export.pdf");
 
+    Route::resource("predefined-answer", \App\Http\Controllers\PredefinedAnswersController::class)->except(["show", "update", "create", "edit"]);
+
+    Route::get("download-whole-year/{year}",\App\Http\Controllers\FullYearExportController::class)->name("download-whole-year");
+
+    Route::resource('user', \App\Http\Controllers\UserController::class)->except(["show"]);
+
     //Redirections
     Route::redirect('/',"dashboard");
-
 });
