@@ -10,7 +10,7 @@
                 <a href="{{ route("enquiries.create") }}" class="btn btn-primary float-right">@lang("enquiries.create")</a>
             </div>
             <div class="card-body">
-                @livewire("tables.enquiries-table")
+                @livewire("tables.enquiries-table", ["openOnly" => $openOnly])
             </div>
         </div>
     </div>

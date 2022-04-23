@@ -11,9 +11,16 @@ use App\Services\EnquiriesService;
 
 class EnquiriesController
 {
-    function index(){
-        return view("enquiries.index");
+    public function index(){
+        return view("enquiries.index")
+            ->with('openOnly', false);
     }
+
+    function open(){
+        return view("enquiries.index")
+            ->with('openOnly', true);
+    }
+
     public function create()
     {
         $parts = Part::pluck("name", "id");
@@ -53,4 +60,27 @@ class EnquiriesController
         return redirect()->back()->with("successes",[__("messages.delete_success")]);
     }
 
+    public function setDoable(Enquiry $enquiry) {
+        if (!empty($enquiry->doable_at)) {
+            return redirect()->back()->with("errors", $errors);
+        }
+
+        $enquiry->update([
+            "doable_at" => now()
+        ]);
+
+        return redirect()->back()->with("successes",[__("messages.save_success")]);
+    }
+
+    public function setClosed(Enquiry $enquiry) {
+        if (!empty($enquiry->closed_at)) {
+            return redirect()->back()->with("errors", $errors);
+        }
+
+        $enquiry->update([
+            "closed_at" => now()
+        ]);
+
+        return redirect()->back()->with("successes",[__("messages.save_success")]);
+    }
 }

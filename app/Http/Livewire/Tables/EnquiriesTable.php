@@ -9,6 +9,11 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 class EnquiriesTable extends DataTableComponent
 {
+    public bool $openOnly;
+
+    public function mount($openOnly = false) {
+        $this->openOnly = $openOnly;
+    }
 
     public function columns(): array
     {
@@ -28,6 +33,24 @@ class EnquiriesTable extends DataTableComponent
             Column::make(__("enquiries.customer"), 'customer.name')
                   ->sortable()
                   ->searchable(),
+            Column::make(__("enquiries.doable"), 'doable_at')
+                  ->sortable()
+                  ->searchable()
+                  ->format(function ($value) {
+                      return !empty($value) ? $value->format("Y. m. d. H:i") : "";
+                  }),
+            Column::make(__("enquiries.mechanic"), 'mechanic.name')
+                  ->sortable()
+                  ->searchable(),
+            Column::make(__("enquiries.answer"), 'answer')
+                  ->sortable()
+                  ->searchable(),
+            Column::make(__("enquiries.closed"), 'closed_at')
+                  ->sortable()
+                  ->searchable()
+                  ->format(function ($value) {
+                      return !empty($value) ? $value->format("Y. m. d. H:i") : "";
+                  }),
             Column::make('')
                   ->format(function (Enquiry $row) {
                       return view('enquiries.includes.actions')
@@ -39,6 +62,12 @@ class EnquiriesTable extends DataTableComponent
 
     public function query(): Builder
     {
+        if ($this->openOnly) {
+            return Enquiry::query()
+                          ->whereNotNull("doable_at")
+                          ->whereNull("closed_at");
+        }
+
         return Enquiry::query();
     }
 }

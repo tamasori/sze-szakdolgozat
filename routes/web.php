@@ -39,6 +39,15 @@ Route::group([
 
     Route::resource("customers",\App\Http\Controllers\CustomersController::class);
 
+    Route::group([
+        "prefix" => "enquiries",
+        "as" => "enquiries."
+    ], function () {
+        Route::get("/{enquiry}/setDoable", [\App\Http\Controllers\EnquiriesController::class, "setDoable"])->name("set-doable");
+        Route::get("/{enquiry}/setClosed", [\App\Http\Controllers\EnquiriesController::class, "setClosed"])->name("set-closed");
+        Route::get("/open", [\App\Http\Controllers\EnquiriesController::class, "open"])->name("open");
+    });
+
     Route::resource("enquiries",\App\Http\Controllers\EnquiriesController::class);
 
     Route::resource("preset",\App\Http\Controllers\PresetsController::class);

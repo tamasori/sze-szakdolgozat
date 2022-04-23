@@ -60,13 +60,27 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ route("enquiries.index") }}" class="nav-link @if(Request::routeIs("enquiries.*")) active @endif">
+                <li class="nav-item @if(Request::routeIs("enquiries.*")) menu-open @endif">
+                    <a href="#" class="nav-link @if(Request::routeIs("enquiries.index")) active @endif">
                         <i class="nav-icon fas fa-question"></i>
                         <p>
                             @lang("enquiries.menu")
                         </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item ">
+                            <a href="{{ route("enquiries.index") }}" class="nav-link @if(Request::routeIs("enquiries.index")) active @endif">
+                                <i class="nav-icon"></i>
+                                <p>@lang("enquiries.all")</p>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a href="{{ route("enquiries.open") }}" class="nav-link @if(Request::routeIs("enquiries.open")) active @endif">
+                                <i class="nav-icon"></i>
+                                <p>@lang("enquiries.open")</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <hr class="sidebar-divider">
                 @foreach(\App\Services\MenuService::getMenuArray() as $year => $items)

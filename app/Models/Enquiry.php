@@ -12,6 +12,11 @@ class Enquiry extends Model
     use HasFactory, CreatedBy, SoftDeletes;
     protected $guarded = [];
 
+    protected $dates = [
+        "doable_at",
+        "closed_at"
+    ];
+
     public function part() {
         return $this->belongsTo(Part::class, "part_id");
     }
@@ -22,5 +27,9 @@ class Enquiry extends Model
 
     public function customer() {
         return $this->belongsTo(Customer::class, "customer_id");
+    }
+
+    public function mechanic() {
+        return $this->belongsTo(User::class, "mechanic_id");
     }
 }
