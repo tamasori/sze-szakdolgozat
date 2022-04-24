@@ -20,19 +20,20 @@ Route::group(
     [
         "prefix" => "v1",
         "as" => "v1.",
-        "middleware" => ["auth:sanctum"]
     ],
     function (){
         Route::post("/login",[\App\Http\Controllers\Api\v1\LoginController::class,"login"])->name("login");
-        Route::get("/zip-decode/{zipcode?}",[\App\Http\Controllers\Api\v1\ZipCodeDecodeController::class,"decode"])->name("zip.decode");
-        Route::get("/kuj-decoder/{search?}",[\App\Http\Controllers\Api\v1\KUJDecoderController::class,"search"])->name("kuj.decode");
-        Route::get("/kuj-decoder/details/{kuj_number?}",[\App\Http\Controllers\Api\v1\KUJDecoderController::class,"details"])->name("kuj.details");
-        Route::delete("cars/delete-file/{file}",[\App\Http\Controllers\Api\v1\CarsController::class,"deleteFile"])->name("cars.delete-file");
+        Route::group(["middleware" => ["auth:sanctum"]], function () {
+            Route::get("/zip-decode/{zipcode?}",[\App\Http\Controllers\Api\v1\ZipCodeDecodeController::class,"decode"])->name("zip.decode");
+            Route::get("/kuj-decoder/{search?}",[\App\Http\Controllers\Api\v1\KUJDecoderController::class,"search"])->name("kuj.decode");
+            Route::get("/kuj-decoder/details/{kuj_number?}",[\App\Http\Controllers\Api\v1\KUJDecoderController::class,"details"])->name("kuj.details");
+            Route::delete("cars/delete-file/{file}",[\App\Http\Controllers\Api\v1\CarsController::class,"deleteFile"])->name("cars.delete-file");
 
-        Route::get('/enquiries/open', [\App\Http\Controllers\Api\v1\AppEnquiryController::class, "open"])->name("enquiries.open");
-        Route::get('/enquiries/own', [\App\Http\Controllers\Api\v1\AppEnquiryController::class, "own"])->name("enquiries.own");
-        Route::post('/enquiries/{enquiry}/take', [\App\Http\Controllers\Api\v1\AppEnquiryController::class, "take"])->name("enquiries.take");
-        Route::post('/enquiries/{enquiry}/answer', [\App\Http\Controllers\Api\v1\AppEnquiryController::class, "answer"])->name("enquiries.answer");
+            Route::get('/enquiries/open', [\App\Http\Controllers\Api\v1\AppEnquiryController::class, "open"])->name("enquiries.open");
+            Route::get('/enquiries/own', [\App\Http\Controllers\Api\v1\AppEnquiryController::class, "own"])->name("enquiries.own");
+            Route::post('/enquiries/{enquiry}/take', [\App\Http\Controllers\Api\v1\AppEnquiryController::class, "take"])->name("enquiries.take");
+            Route::post('/enquiries/{enquiry}/answer', [\App\Http\Controllers\Api\v1\AppEnquiryController::class, "answer"])->name("enquiries.answer");
+        });
 
         Orion::resource('predefined-answers', PredefinedAnswersController::class);
         Orion::resource('car-makes', \App\Http\Controllers\Api\v1\CarMakesController::class);
