@@ -19,7 +19,8 @@ use App\Http\Controllers\Api\v1\PredefinedAnswersController;
 Route::group(
     [
         "prefix" => "v1",
-        "as" => "v1."
+        "as" => "v1.",
+        "middleware" => ["auth:sanctum"]
     ],
     function (){
         Route::post("/login",[\App\Http\Controllers\Api\v1\LoginController::class,"login"])->name("login");
