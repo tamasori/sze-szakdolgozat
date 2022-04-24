@@ -48,7 +48,7 @@ class AppEnquiryController extends Controller
 
     public function answer(EnquiryAnswerRequest $request, Enquiry $enquiry)
     {
-        abort_if($enquiry->mechanic_id !== auth()->id() || ! empty($enquiry->answer), 403);
+        abort_if($enquiry->mechanic_id != auth()->id() || ! empty($enquiry->answer), 403);
 
         $enquiry->update([
             "answer" => $request->get("answer"),
