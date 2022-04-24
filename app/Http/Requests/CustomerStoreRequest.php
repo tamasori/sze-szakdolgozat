@@ -33,4 +33,20 @@ class CustomerStoreRequest extends FormRequest {
             "note"                        => "nullable|string",
         ];
     }
+
+    public function attributes()
+    {
+        return [
+            "company"                     => __("customers.company"),
+            "company_registration_number" => __("customers.company_registration_number"),
+            "name"                        => __("customers.name"),
+            "email"                       => __("customers.email"),
+            "phone_number"                => __("customers.phone_number"),
+            "city"                        => __("customers.city"),
+            "street"                      => __("customers.street"),
+            "house_number"                => __("customers.house_number"),
+            "vat_number"                  => __("customers.vat_number"),
+            "note"                        => __("customers.note"),
+        ];
+    }
 }

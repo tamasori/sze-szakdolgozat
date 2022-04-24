@@ -25,11 +25,20 @@ class MachinesStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            "local_identifier" => ["required", "string", "max:255",
-                                   ($this->machine ? \Illuminate\Validation\Rule::unique("workshop_machineries",
-                                       "local_identifier")->ignore($this->machine->id) : "unique:workshop_machineries,local_identifier"),
+            "local_identifier" => [
+                "required", "string", "max:255",
+                ($this->machine ? \Illuminate\Validation\Rule::unique("workshop_machineries",
+                    "local_identifier")->ignore($this->machine->id) : "unique:workshop_machineries,local_identifier"),
             ],
             "name"             => ["required", "string", "max:255"],
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            "local_indentifier" => __('machines.local_identifier'),
+            "name"              => __('machines.name'),
         ];
     }
 }

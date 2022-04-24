@@ -38,4 +38,21 @@ class InspectorsStoreRequest extends FormRequest
             'note'                        => 'nullable',
         ];
     }
+
+    public function attributes()
+    {
+        return [
+            'company'                     => __('inspectors.company'),
+            'company_registration_number' => __('inspectors.company_registration_number'),
+            'name'                        => __('inspectors.name'),
+            'email'                       => __('inspectors.email'),
+            'phone_number'                => __('inspectors.phone_number'),
+            'city'                        => __('inspectors.city'),
+            'street'                      => __('inspectors.street'),
+            'house_number'                => __('inspectors.house_number'),
+            'vat_number'                  => __('inspectors.vat_number'),
+            'public_identifier_numbers'   => __('inspectors.public_identifier_numbers'),
+            'note'                        => __('inspectors.note'),
+        ];
+    }
 }

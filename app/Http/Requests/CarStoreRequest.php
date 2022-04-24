@@ -52,4 +52,35 @@ class CarStoreRequest extends FormRequest
             "substances.*.mass" => "required|numeric|max:255",
         ];
     }
+
+    public function attributes()
+    {
+        return [
+            "car.local_identifier" => __("cars.local_identifier"),
+            "car.demolition_certificate_number" => __("cars.demolition_certificate_number"),
+            "car.date_of_demolition" => __("cars.date_of_demolition"),
+            "car.zip" => __("cars.zip"),
+            "car.city" => __("cars.city"),
+            "car.company_name" => __("cars.company_name"),
+            "car.kuj_number" => __("cars.kuj_number"),
+            "car.ktj_number" => __("cars.ktj_number"),
+            "car_make" => __("cars.car_make"),
+            "car_model" => __("cars.car_model"),
+            "car.year" => __("cars.year"),
+            "car.fuel_type_id" => __("cars.fuel_type_id"),
+            "car.vin" => __("cars.vin"),
+            "car.engine_code" => __("cars.engine_code"),
+            "car.engine_ccm" => __("cars.engine_ccm"),
+            "car.power" => __("cars.power"),
+            "color" => __("cars.color"),
+            "car.own_weight" => __("cars.own_weight"),
+            "car.retrieved_weight" => __("cars.retrieved_weight"),
+            "car.dry_weight" => __("cars.dry_weight"),
+            "car.note" => __("cars.note"),
+            "substances.*.date" => __("substances.date"),
+            "substances.*.ewc_code_id" => __("substances.ewc_code_id"),
+            "substances.*.part_name" => __("substances.part_name"),
+            "substances.*.mass" => __("substances.mass"),
+        ];
+    }
 }
