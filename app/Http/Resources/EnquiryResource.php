@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Enquiry;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class EnquiryResource extends JsonResource
@@ -20,7 +21,7 @@ class EnquiryResource extends JsonResource
             'car_data' => [
                 'make' => $this->resource->carModel->carMake->make,
                 'model' => $this->resource->carModel->model,
-                'year' => $this->resource->year,
+                'year' => $this->resource->car_year,
             ],
             'note' => $this->resource->note
         ];
