@@ -4,7 +4,7 @@ namespace App\Traits;
 
 trait CreatedBy
 {
-    public function bootCreatedBy()
+    public static function bootCreatedBy()
     {
         self::saving(function ($model) {
             if (auth()->check()) {
