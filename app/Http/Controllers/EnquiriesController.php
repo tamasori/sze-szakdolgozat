@@ -23,10 +23,8 @@ class EnquiriesController
 
     public function create()
     {
-        $parts = Part::pluck("name", "id");
         $customers = Customer::pluck("name", "id");
         return view("enquiries.edit")
-            ->with("parts", $parts)
             ->with("customers", $customers);
     }
 
@@ -39,10 +37,8 @@ class EnquiriesController
 
     public function edit(Enquiry $enquiry)
     {
-        $parts = Part::pluck("name", "id");
         $customers = Customer::pluck("name", "id");
         return view("enquiries.edit")
-            ->with("parts", $parts)
             ->with("customers", $customers)
             ->with('enquiry', $enquiry);
     }

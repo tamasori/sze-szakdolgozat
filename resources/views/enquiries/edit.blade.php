@@ -21,11 +21,20 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>@lang("enquiries.part")</label>
-                                <select class="form-control" name="part_id" required>
-                                    @foreach($parts as $id => $name)
-                                        <option value="{{ $id }}" @if(old("part_id", $enquiry->part_id ?? null)) selected @endif>{{ $name }}</option>
-                                    @endforeach
-                                </select>
+                                <vue-autosuggest
+                                        :suggestions="partsSuggestions"
+                                        v-model="part"
+                                        :input-props="{
+                                                class:'autosuggest__input form-control ',
+                                                placeholder:'@lang('enquiries.part')',
+                                                required:'required', autocomplete:'nope',  name:'part',value:'{{ old("part", $enquiry->part->name ?? "") }}'
+                                            }"
+                                        @input="onPartChange"
+                                >
+                                    <template slot-scope="{suggestion}">
+                                        <span class="my-suggestion-item">@{{suggestion.item}}</span>
+                                    </template>
+                                </vue-autosuggest>
                             </div>
                         </div>
                         <div class="col-sm-6">
@@ -40,12 +49,12 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label class="col-form-label-sm p-0 m-0">@lang("enquiries.car_make")</label>
+                                <label>@lang("enquiries.car_make")</label>
                                 <vue-autosuggest
                                     :suggestions="carMakesSuggestions"
                                     v-model="carMake"
                                     :input-props="{
-                                                class:'autosuggest__input form-control form-control-sm',
+                                                class:'autosuggest__input form-control ',
                                                 placeholder:'@lang('enquiries.car_make')',
                                                 required:'required', autocomplete:'nope',  name:'car_make',value:'{{ old("car_make", $enquiry->carModel->carMake->make ?? "") }}'
                                             }"
@@ -60,12 +69,12 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label class="col-form-label-sm p-0 m-0">@lang("enquiries.car_model")</label>
+                                <label>@lang("enquiries.car_model")</label>
                                 <vue-autosuggest
                                     :suggestions="carModelsSuggestions"
                                     v-model="carModel"
                                     :input-props="{
-                                                class:'autosuggest__input form-control form-control-sm',
+                                                class:'autosuggest__input form-control ',
                                                 placeholder:'@lang('enquiries.car_model')',
                                                 required:'required', autocomplete:'nope',  name:'car_model',value:'{{ old("car_model", $enquiry->carModel->model ?? "") }}'
                                             }"
@@ -110,6 +119,7 @@
             el: '#enquiryPage',
             async beforeMount() {
                 await this.getCarMakes();
+                await this.getParts();
             },
             components: {
                 VueAutosuggest
@@ -117,12 +127,25 @@
             data: {
                 carMake: "{{ old("car_make", $enquiry->carModel->carMake->make ?? "") }}",
                 carModel: "{{ old("car_model", $enquiry->carModel->model ?? "") }}",
+                part: "{{ old("part", $enquiry->part->name ?? "") }}",
                 carMakes: [],
                 carModels: [],
+                parts: [],
                 carMakesSuggestions: [{data: []}],
                 carModelsSuggestions: [{data: []}],
+                partsSuggestions: [{data: []}],
             },
             methods: {
+                async getParts() {
+                    const rawResponse = await fetch("/api/v1/parts", {
+                        method: 'get',
+                        headers: new Headers({
+                            'Authorization': 'Bearer ' + '{{ auth()->user()->getPlainTextToken()->plainTextToken }}',
+                        }),
+                    });
+                    const response = await rawResponse.json();
+                    this.parts = response.data;
+                },
                 async getCarMakes() {
                     const rawResponse = await fetch("/api/v1/car-makes", {
                         method: 'get',
@@ -157,6 +180,9 @@
                         this.filterCarModelSuggestions("");
                     }
                 },
+                onPartChange(input) {
+                    this.filterPartSuggestions(input);
+                },
                 onCarMakeChange(input) {
                     this.carModel = "";
                     this.carModelsSuggestions = [{data: []}];
@@ -182,6 +208,14 @@
                         return model.includes(input.toLowerCase());
                     }).map(i => {
                         return i.model;
+                    });
+                },
+                filterPartSuggestions(input) {
+                    this.partsSuggestions[0].data = this.parts.filter(i => {
+                        let name = i.name.toLowerCase();
+                        return name.includes(input.toLowerCase());
+                    }).map(i => {
+                        return i.name;
                     });
                 },
             },

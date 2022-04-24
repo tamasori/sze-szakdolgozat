@@ -99,6 +99,9 @@ Route::group([
 
     Route::get("download-whole-year/{year}",\App\Http\Controllers\FullYearExportController::class)->name("download-whole-year");
 
+    Route::get("import-r4", [\App\Http\Controllers\ImportR4Controller::class, "index"])->name("import-r4.index");
+    Route::post("import-r4/import", [\App\Http\Controllers\ImportR4Controller::class, "import"])->name("import-r4.import");
+
     Route::resource('user', \App\Http\Controllers\UserController::class)->except(["show"]);
 
     //Redirections

@@ -23,13 +23,13 @@
                 </a>
             </div>
             <div class="col-md-2">
-                <a class="btn btn-dark w-100 pt-5 pb-5" href="#">
+                <a class="btn btn-dark w-100 pt-5 pb-5" href="{{ route('enquiries.create') }}">
                     <i class="fas fa-book-medical big-button"></i>
                     <h3 class="mt-3">@lang("dashboard.big_buttons.new_request")</h3>
                 </a>
             </div>
             <div class="col-md-2">
-                <a class="btn btn-success w-100 pt-5 pb-5" href="#">
+                <a class="btn btn-success w-100 pt-5 pb-5" href="{{ route('enquiries.open') }}">
                     <i class="fas fa-book big-button"></i>
                     <h3 class="mt-3">@lang("dashboard.big_buttons.current_requests")</h3>
                 </a>

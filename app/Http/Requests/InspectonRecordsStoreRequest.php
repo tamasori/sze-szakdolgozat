@@ -34,4 +34,17 @@ class InspectonRecordsStoreRequest extends FormRequest
             'created_by'            => ['nullable','integer'],
         ];
     }
+
+    public function attributes()
+    {
+        return [
+            "date" => __("inspection-records.date"),
+            "workshop_machinery_id" => __("inspection-records.workshop_machinery_id"),
+            "inspector_id" => __("inspection-records.inspector_id"),
+            "valid_till" => __("inspection-records.valid_till"),
+            "result" => __("inspection-records.result"),
+            "note" => __("inspection-records.note"),
+            "created_by" => __("inspection-records.created_by"),
+        ];
+    }
 }

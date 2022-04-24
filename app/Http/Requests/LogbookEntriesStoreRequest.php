@@ -33,4 +33,15 @@ class LogbookEntriesStoreRequest extends FormRequest
             'result'      => ['required'],
         ];
     }
+
+    public function attributes()
+    {
+        return [
+            'log_type' => __("logbook-entries.log_type"),
+            'check_type' => __("logbook-entries.check_type"),
+            'date' => __("logbook-entries.date"),
+            'description' => __("logbook-entries.description"),
+            'result' => __("logbook-entries.result"),
+        ];
+    }
 }

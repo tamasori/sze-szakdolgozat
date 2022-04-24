@@ -30,4 +30,14 @@ class UserStoreRequest extends FormRequest
             "role" => ["required", "in:ADMIN,DISPATCHER,MECHANIC"],
         ];
     }
+
+    public function attributes()
+    {
+        return [
+            "name" => __("users.name"),
+            "email" => __("users.email"),
+            "password" => __("users.password"),
+            "role" => __("users.role"),
+        ];
+    }
 }

@@ -9,6 +9,8 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 class EnquiriesTable extends DataTableComponent
 {
+    protected $listeners = ["enquiry-updated" => '$refresh'];
+
     public bool $openOnly;
 
     public function mount($openOnly = false) {
@@ -46,6 +48,12 @@ class EnquiriesTable extends DataTableComponent
                   ->sortable()
                   ->searchable(),
             Column::make(__("enquiries.closed"), 'closed_at')
+                  ->sortable()
+                  ->searchable()
+                  ->format(function ($value) {
+                      return !empty($value) ? $value->format("Y. m. d. H:i") : "";
+                  }),
+            Column::make(__("enquiries.created_at"), 'created_at')
                   ->sortable()
                   ->searchable()
                   ->format(function ($value) {

@@ -53,6 +53,14 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ route("import-r4.index") }}" class="nav-link @if(Request::routeIs("import-r4.*")) active @endif">
+                        <i class="nav-icon fas fa-file-import"></i>
+                        <p>
+                            @lang("imports.menu")
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ route("customers.index") }}" class="nav-link @if(Request::routeIs("customers.*")) active @endif">
                         <i class="nav-icon fas fa-user-astronaut"></i>
                         <p>

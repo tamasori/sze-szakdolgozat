@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Auth;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class LoginRequest extends FormRequest
+class ImportR4Request extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,7 +13,7 @@ class LoginRequest extends FormRequest
      */
     public function authorize()
     {
-        return !auth()->check();
+        return true;
     }
 
     /**
@@ -25,18 +24,14 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            "email" => ["required","email"],
-            "password" => ["required"],
-            "remember" => ["sometimes","boolean"]
+            'file' => 'required|mimes:xls,xlsx,csv',
         ];
     }
 
     public function attributes()
     {
         return [
-            "email" => __('users.email'),
-            "password" => __('users.password'),
-            "remember" => __('auth.remember_me')
+            "file" => __("imports.file")
         ];
     }
 }

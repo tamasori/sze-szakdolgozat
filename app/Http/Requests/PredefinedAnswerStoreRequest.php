@@ -27,4 +27,11 @@ class PredefinedAnswerStoreRequest extends FormRequest
             "answer" => ["required", "string", "max:255", "unique:predefined_answers,answer"],
         ];
     }
+
+    public function attributes()
+    {
+        return [
+            "answer" => __("predefined-answers.answer"),
+        ];
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Services;
 
 
+use App\Models\Part;
 use App\Models\CarMake;
 use App\Models\CarModel;
 use App\Models\Enquiry;
@@ -16,7 +17,7 @@ class EnquiriesService
     public function __construct(Request $request, Enquiry $enquiry = null)
     {
         $this->request = $request;
-        $this->enquiry     = $enquiry;
+        $this->enquiry = $enquiry;
     }
 
     final public function store(): Enquiry
@@ -27,23 +28,25 @@ class EnquiriesService
         } else {
             $this->enquiry = Enquiry::create($enquiryDetails);
         }
+
         return $this->enquiry;
     }
 
 
     private function getEnquiryArray(): array
     {
-        $data                       = $this->request->validated();
-        $enquiryDetails             = [
-            "part_id" => $data["part_id"],
+        $data           = $this->request->validated();
+        $enquiryDetails = [
             "customer_id" => $data["customer_id"],
-            "car_year" => $data["car_year"],
-            "note" => $data["note"] ?? "",
+            "car_year"    => $data["car_year"],
+            "note"        => $data["note"] ?? "",
         ];
 
-        $carMake                    = $this->getCarMakeFromCarMakeString();
-        $carModel                   = $this->getCarModelFromCarModelString($carMake);
+        $part                           = $this->getPartModelFromPartString();
+        $carMake                        = $this->getCarMakeFromCarMakeString();
+        $carModel                       = $this->getCarModelFromCarModelString($carMake);
         $enquiryDetails["car_model_id"] = $carModel->getKey();
+        $enquiryDetails["part_id"]      = $part->getKey();
 
         return $enquiryDetails;
     }
@@ -70,5 +73,16 @@ class EnquiriesService
         }
 
         return $carModelModel;
+    }
+
+    private function getPartModelFromPartString()
+    {
+        $part      = $this->request->get("part");
+        $partModel = Part::where("name", "LIKE", $part)->first();
+        if ( ! $partModel) {
+            $partModel = Part::create(["name" => $part]);
+        }
+
+        return $partModel;
     }
 }

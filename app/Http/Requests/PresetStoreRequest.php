@@ -31,4 +31,14 @@ class PresetStoreRequest extends FormRequest
             "substances.*.mass" => "required|numeric|max:255",
         ];
     }
+
+    public function attributes()
+    {
+        return [
+            "name" => __("presets.name"),
+            "substances.*.ewc_code_id" => __("substances.ewc_code"),
+            "substances.*.part_name" => __("substances.part_name"),
+            "substances.*.mass" => __("substances.mass"),
+        ];
+    }
 }

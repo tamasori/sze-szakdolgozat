@@ -1,10 +1,10 @@
 <?php
 
 return [
-    "menu"                        => "Váráslók",
-    "title"                       => "Váráslók kezelése",
-    "update"                      => "Várásló szerkesztése",
-    "create"                      => "Várásló felvitele",
+    "menu"                        => "Vásárlók",
+    "title"                       => "Vásárlók kezelése",
+    "update"                      => "Vásárló szerkesztése",
+    "create"                      => "Vásárló felvitele",
     "company"                     => "Cég név",
     "company_registration_number" => "Cég regisztrációs szám",
     "name"                        => "Név",
