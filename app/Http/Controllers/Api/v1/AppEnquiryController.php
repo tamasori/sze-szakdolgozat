@@ -16,7 +16,9 @@ class AppEnquiryController extends Controller
                             ->whereNotNull("doable_at")
                             ->whereNull("closed_at")
                             ->whereNull("mechanic_id")
-                            ->orderBy("created_at", "DESC");
+                            ->orderBy("created_at", "DESC")
+                            ->get();
+
         return EnquiryResource::collection($enquiries);
     }
 
@@ -27,7 +29,9 @@ class AppEnquiryController extends Controller
                             ->whereNull("closed_at")
                             ->whereNull("answer")
                             ->where("mechanic_id", auth()->id())
-                            ->orderBy("created_at", "DESC");
+                            ->orderBy("created_at", "DESC")
+                            ->get();
+
         return EnquiryResource::collection($enquiries);
     }
 
@@ -36,7 +40,7 @@ class AppEnquiryController extends Controller
         abort_if($enquiry->mechanic_id, 403);
 
         $enquiry->update([
-            "mechanic_id" => auth()->id()
+            "mechanic_id" => auth()->id(),
         ]);
 
         return EnquiryResource::make($enquiry);
@@ -44,10 +48,10 @@ class AppEnquiryController extends Controller
 
     public function answer(EnquiryAnswerRequest $request, Enquiry $enquiry)
     {
-        abort_if($enquiry->mechanic_id !== auth()->id() || !empty($enquiry->answer), 403);
+        abort_if($enquiry->mechanic_id !== auth()->id() || ! empty($enquiry->answer), 403);
 
         $enquiry->update([
-            "answer" => $request->get("answer")
+            "answer" => $request->get("answer"),
         ]);
 
         return EnquiryResource::make($enquiry);
