@@ -84,7 +84,7 @@
             },
             data: {
                 ewcCodes: [],
-                substances: {!! (json_encode(old("substances", isset($preset) ? json_decode($preset->fields) : [])))  !!},
+                substances: {!! (json_encode(old("substances", isset($preset) ? $preset->convertFieldsToArray() : []))) !!},
             },
             methods: {
                 addSubstance(){

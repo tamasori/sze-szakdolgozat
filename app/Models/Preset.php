@@ -17,11 +17,13 @@ class Preset extends Model
         $fields = json_decode($this->fields, true);
         $return = [];
 
-        foreach ($fields as $field) {
+        foreach ($fields as $key => $field) {
             $return[] = [
                 "ewc_code" => EwcCode::find($field['ewc_code_id']),
+                "ewc_code_id" => $field['ewc_code_id'],
                 "part_name" => $field["part_name"],
                 "mass" => floatval($field["mass"]),
+                "id" => $key
             ];
         }
 

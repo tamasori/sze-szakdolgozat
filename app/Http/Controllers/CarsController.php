@@ -4,6 +4,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Http\Requests\CarStoreRequest;
 use App\Models\Car;
 use App\Services\CarsService;
 use Illuminate\Http\Request;
@@ -20,7 +21,7 @@ class CarsController
         return view("cars.edit");
     }
 
-    public function store(Request $request)
+    public function store(CarStoreRequest $request)
     {
         $car = (new CarsService($request))->store();
         return redirect()->route("car.edit",$car)
@@ -33,7 +34,7 @@ class CarsController
             ->with('car', $car);
     }
 
-    public function update(Request $request, Car $car)
+    public function update(CarStoreRequest $request, Car $car)
     {
         $car = (new CarsService($request,$car))->store();
         return redirect()->route("car.edit",$car)

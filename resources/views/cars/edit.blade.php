@@ -53,6 +53,7 @@
                                 <label class="col-form-label-sm p-0 m-0">@lang("cars.date_of_demolition")</label>
                                 <input type="date" class="form-control form-control-sm"
                                        placeholder="@lang("cars.date_of_demolition")"
+                                       v-model="dateOfDemolition"
                                        name="car[date_of_demolition]"
                                        value="{{ old("car.date_of_demolition", $car->date_of_demolition ?? "") }}"
                                        autocomplete="nope"
@@ -423,6 +424,7 @@
                 ownWeight: {{ old("car.own_weight", $car->own_weight ?? 0) }},
                 dryWeight: {{ old("car.dry_weight", $car->dry_weight ?? 0) }},
                 retrievedWeight: {{ old("car.retrieved_weight", $car->retrieved_weight ?? 0) }},
+                dateOfDemolition: {{ old("car.date_of_demolition", $car->date_of_demolition ?? 0) }},
                 carMakes: [],
                 carModels: [],
                 colors: [],
@@ -646,11 +648,12 @@
                 addSubstancesFromPreset() {
                     let selected = this.presets[this.selectedPreset];
                     const today = new Date();
+                    const date = this.dateOfDemolition ? (new Date(this.dateOfDemolition)) : today;
                     if (selected) {
-                        JSON.parse(selected.fields).forEach(substance => {
+                        Object.values(JSON.parse(selected.fields)).forEach(substance => {
                             this.substances.push({
                                 id: s4(),
-                                date: today.toISOString().split('T')[0],
+                                date: date.toISOString().split('T')[0],
                                 ewc_code_id: substance.ewc_code_id,
                                 part_name: substance.part_name,
                                 mass: substance.mass

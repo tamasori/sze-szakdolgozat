@@ -97,16 +97,17 @@ class CarsTable extends DataTableComponent
     public function sendStatistics()
     {
         $query = $this->getFilteredQuery();
+        $query->orders = [];
 
         $this->emit("carsTableRefreshed", [
             "count"             => $query->count(),
             "car_ret_weight"    => $query->sum("retrieved_weight"),
             "car_dry_weight"    => $query->sum("dry_weight"),
             "car_avg_year"      => round($query->avg("year")),
-            "car_stats_by_city" => $query->groupBy("city")->selectRaw("MIN(local_identifier) as local_identifier, city, count(*) as count, sum(retrieved_weight) as sum")->get(),
+            "car_stats_by_city" => $query->groupBy("city")->selectRaw("1 as local_identifier, city, count(*) as count, sum(retrieved_weight) as sum")->orderBy('sum','desc')->get(),
             "car_stats_by_make" => $query->join("car_models", "car_models.id", "=",
                 "cars.car_model_id")->join("car_makes", "car_makes.id", "=",
-                "car_models.make_id")->groupBy("car_makes.make")->selectRaw("MIN(local_identifier) as local_identifier, car_makes.make, count(*) as count, sum(retrieved_weight) as sum")->get(),
+                "car_models.make_id")->groupBy("car_makes.make")->selectRaw("1 as local_identifier, car_makes.make, count(*) as count, sum(retrieved_weight) as sum")->orderBy('sum','desc')->get(),
         ]);
     }
 
