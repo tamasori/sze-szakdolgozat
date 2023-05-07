@@ -23,6 +23,10 @@ class Car extends Model implements HasMedia
     }
 
     public function calculateAndSaveSpecialEwcCodes(){
+        if ($this->substances()->withoutGlobalScopes()->whereIn('ewc_code_id',EwcCode::whereIn("code", ["160104","160106", "Anyag-R4"])->pluck('id'))->count() > 3){
+            $this->substances()->withoutGlobalScopes()->whereIn('ewc_code_id',EwcCode::whereIn("code", ["160104","160106", "Anyag-R4"])->pluck('id'))->delete();
+        }
+
         $this->substances()->withoutGlobalScopes()->updateOrCreate([
             "ewc_code_id" => EwcCode::where("code", "=", "160104")->first()->id,
             "car_id" => $this->id,
@@ -34,6 +38,7 @@ class Car extends Model implements HasMedia
             "ktj_number" => config("company.ktj_number"),
             "kuj_number" => config("company.kuj_number"),
         ]);
+
 
         $this->substances()->withoutGlobalScopes()->updateOrCreate([
             "ewc_code_id" => EwcCode::where("code", "=", "160106")->first()->id,
@@ -47,6 +52,18 @@ class Car extends Model implements HasMedia
             "ktj_number" => config("company.ktj_number"),
             "kuj_number" => config("company.kuj_number"),
             "treatment_code" => "R4"
+        ]);
+
+        $this->substances()->withoutGlobalScopes()->updateOrCreate([
+            "ewc_code_id" => EwcCode::where("code", "=", "Anyag-R4")->first()->id,
+            "car_id" => $this->id,
+        ],[
+            "date" => $this->date_of_demolition,
+            "mass" => $this->retrieved_weight - $this->substances()->where('ewc_code_id', '<>', EwcCode::where('code', 'R4')->first(['id'])->id)->sum('mass'),
+            "in_material_balance" => true,
+            "company_name" => config("company.name"),
+            "ktj_number" => config("company.ktj_number"),
+            "kuj_number" => config("company.kuj_number"),
         ]);
     }
 
@@ -75,7 +92,7 @@ class Car extends Model implements HasMedia
     }
 
     public function substances(){
-        return $this->hasMany(Substance::class,"car_id","id");
+        return $this->hasMany(Substance::class,"car_id","id")->withGlobalScope('exclude',new ExcludeSpecialEwcCodeFromSubstancesScope());
     }
 
     public function getNextCar(){

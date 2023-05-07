@@ -4,16 +4,21 @@
 @section("main")
     <div class="row" id="carFormPage">
         <form
-                action="@if(isset($car)) {{ route("car.update", $car) }} @else {{ route("car.store") }} @endif"
-                method="post"
-                enctype="multipart/form-data">
+            id="carForm"
+            action="@if(isset($car)) {{ route("car.update", $car) }} @else {{ route("car.store") }} @endif"
+            method="post"
+            enctype="multipart/form-data">
             @csrf
             @if(isset($car))
                 @method("PUT")
             @endif
             <div class="card">
                 <div class="card-header">
-                    @if(isset($car)) @lang("cars.update") @else @lang("cars.create") @endif
+                    @if(isset($car))
+                        @lang("cars.update")
+                    @else
+                        @lang("cars.create")
+                    @endif
                     @if(isset($car) && $car->getNextCar())
                         <a class="btn btn-primary float-right ml-2"
                            href="{{ route("car.edit",$car->getNextCar())}}">@lang("cars.nextCar")</a>
@@ -39,7 +44,7 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label
-                                        class="col-form-label-sm p-0 m-0">@lang("cars.demolition_certificate_number")</label>
+                                    class="col-form-label-sm p-0 m-0">@lang("cars.demolition_certificate_number")</label>
                                 <input type="text" class="form-control form-control-sm"
                                        placeholder="@lang("cars.demolition_certificate_number")"
                                        name="car[demolition_certificate_number]"
@@ -93,15 +98,15 @@
                             <div class="form-group">
                                 <label class="col-form-label-sm p-0 m-0">@lang("cars.company_name")</label>
                                 <vue-autosuggest
-                                        :suggestions="companiesSuggestions"
-                                        v-model="companyName"
-                                        :input-props="{
+                                    :suggestions="companiesSuggestions"
+                                    v-model="companyName"
+                                    :input-props="{
                                                 class:'autosuggest__input form-control form-control-sm',
                                                 autocomplete:'nope', placeholder:'@lang('cars.company_name')',
                                                 name:'car[company_name]',value:'{{ old("car.company_name", $car->company_name ?? "") }}'
                                             }"
-                                        @input="onCompanyNameChange"
-                                        @selected="onCompanyNameSelect"
+                                    @input="onCompanyNameChange"
+                                    @selected="onCompanyNameSelect"
                                 >
                                     <template slot-scope="{suggestion}">
                                         <span class="my-suggestion-item">@{{suggestion.item}}</span>
@@ -134,15 +139,15 @@
                             <div class="form-group">
                                 <label class="col-form-label-sm p-0 m-0">@lang("cars.car_make")</label>
                                 <vue-autosuggest
-                                        :suggestions="carMakesSuggestions"
-                                        v-model="carMake"
-                                        :input-props="{
+                                    :suggestions="carMakesSuggestions"
+                                    v-model="carMake"
+                                    :input-props="{
                                                 class:'autosuggest__input form-control form-control-sm',
                                                 placeholder:'@lang('cars.car_make')',
                                                 required:'required', autocomplete:'nope',  name:'car_make',value:'{{ old("car_make", $car->carMake->make ?? "") }}'
                                             }"
-                                        @input="onCarMakeChange"
-                                        @selected="onCarMakeSelect"
+                                    @input="onCarMakeChange"
+                                    @selected="onCarMakeSelect"
                                 >
                                     <template slot-scope="{suggestion}">
                                         <span class="my-suggestion-item">@{{suggestion.item}}</span>
@@ -154,14 +159,14 @@
                             <div class="form-group">
                                 <label class="col-form-label-sm p-0 m-0">@lang("cars.car_model")</label>
                                 <vue-autosuggest
-                                        :suggestions="carModelsSuggestions"
-                                        v-model="carModel"
-                                        :input-props="{
+                                    :suggestions="carModelsSuggestions"
+                                    v-model="carModel"
+                                    :input-props="{
                                                 class:'autosuggest__input form-control form-control-sm',
                                                 placeholder:'@lang('cars.car_model')',
                                                 required:'required', autocomplete:'nope',  name:'car_model',value:'{{ old("car_model", $car->carModel->model ?? "") }}'
                                             }"
-                                        @input="onCarModelChange"
+                                    @input="onCarModelChange"
                                 >
                                     <template slot-scope="{suggestion}">
                                         <span class="my-suggestion-item">@{{suggestion.item}}</span>
@@ -230,14 +235,14 @@
                             <div class="form-group">
                                 <label class="col-form-label-sm p-0 m-0">@lang("cars.color_id")</label>
                                 <vue-autosuggest
-                                        :suggestions="colorsSuggestions"
-                                        v-model="color"
-                                        :input-props="{
+                                    :suggestions="colorsSuggestions"
+                                    v-model="color"
+                                    :input-props="{
                                                 class:'autosuggest__input form-control form-control-sm',
                                                 placeholder:'@lang('cars.color_id')',
                                                 required:'required', name:'color',value:'{{ old("color", $car->color->name ?? "") }}'
                                             }"
-                                        @input="onColorChange"
+                                    @input="onColorChange"
                                 >
                                     <template slot-scope="{suggestion}">
                                         <span class="my-suggestion-item">@{{suggestion.item}}</span>
@@ -312,7 +317,7 @@
                                                 <option value="">@lang("misc.please_select")</option>
                                                 @foreach(\App\Models\EwcCode::orderBy("code")->get() as $ewcCode)
                                                     <option
-                                                            value="{{ $ewcCode->getKey() }}">{{ $ewcCode->code }}</option>
+                                                        value="{{ $ewcCode->getKey() }}">{{ $ewcCode->code }}</option>
                                                 @endforeach
                                             </select>
                                         </td>
@@ -388,13 +393,22 @@
                 <div class="card-footer">
                     <div class="d-flex justify-content-between">
                         <a class="btn btn-danger" href="{{ route("car.index") }}">@lang("misc.back")</a>
-                        <button class="btn btn-success" type="submit">@lang("misc.save")</button>
+                        <button class="btn btn-success" type="button" @click="saveForm()">@lang("misc.save")</button>
                     </div>
                 </div>
             </div>
         </form>
     </div>
 @endsection
+@php
+    $oldSubstances = old("substances", null);
+    if ($oldSubstances !== null){
+        $oldSubstances = array_values(collect($oldSubstances)->map(function ($item,$key){
+            $item['id'] = $key;
+            return $item;
+        })->toArray());
+    }
+@endphp
 @push("after-scripts")
     <script>
         var carFormPage = new Vue({
@@ -405,26 +419,32 @@
                 await this.getEwcCodes();
                 await this.getPresets();
             },
+            mounted(){
+                window.addEventListener('beforeunload', this.showConfirmationMessage);
+            },
+            beforeDestroy() {
+                window.removeEventListener('beforeunload', this.showConfirmationMessage)
+            },
             components: {
                 VueAutosuggest
             },
             data: {
                 ewcCodes: [],
-                substances: {!! (old("substances", $car->substances ?? json_encode([])))  !!},
+                substances: {!! (json_encode($oldSubstances ? $oldSubstances : (isset($car) ? ($car->substances()->get() ?? []) : []) ))  !!},
                 companyNameTimeout: null,
                 companies: "",
-                companyName: "{{ old("car.company_name", $car->company_name ?? "") }}",
-                kujNumber: "{{ old("car.kuj_number", $car->kuj_number ?? "") }}",
-                ktjNumber: "{{ old("car.ktj_number", $car->ktj_number ?? "") }}",
-                city: "{{ old("car.city", $car->city ?? "") }}",
-                zip: "{{ old("car.zip", $car->zip ?? "") }}",
-                carMake: "{{ old("car_make", $car->carMake->make ?? "") }}",
-                carModel: "{{ old("car_model", $car->carModel->model ?? "") }}",
-                color: "{{ old("color", $car->color->name ?? "") }}",
-                ownWeight: {{ old("car.own_weight", $car->own_weight ?? 0) }},
-                dryWeight: {{ old("car.dry_weight", $car->dry_weight ?? 0) }},
-                retrievedWeight: {{ old("car.retrieved_weight", $car->retrieved_weight ?? 0) }},
-                dateOfDemolition: {{ old("car.date_of_demolition", $car->date_of_demolition ?? 0) }},
+                companyName: "{{ old("car.company_name", $car->company_name ?? "")  ?? "" }}",
+                kujNumber: "{{ old("car.kuj_number", $car->kuj_number ?? "")  ?? "" }}",
+                ktjNumber: "{{ old("car.ktj_number", $car->ktj_number ?? "")  ?? "" }}",
+                city: "{{ old("car.city", $car->city ?? "")  ?? "" }}",
+                zip: "{{ old("car.zip", $car->zip ?? "")  ?? "" }}",
+                carMake: "{{ old("car_make", $car->carMake->make ?? "")  ?? "" }}",
+                carModel: "{{ old("car_model", $car->carModel->model ?? "") ?? ""}}",
+                color: "{{ old("color", $car->color->name ?? "")  ?? "" }}",
+                ownWeight: {{ old("car.own_weight", $car->own_weight ?? 0)  ?? 0 }},
+                dryWeight: {{ old("car.dry_weight", $car->dry_weight ?? 0)  ?? 0 }},
+                retrievedWeight: {{ old("car.retrieved_weight", $car->retrieved_weight ?? 0)  ?? 0 }},
+                dateOfDemolition: "{{ old("car.date_of_demolition", $car->date_of_demolition ?? 0) ?? 0 }}",
                 carMakes: [],
                 carModels: [],
                 colors: [],
@@ -434,6 +454,7 @@
                 carMakesSuggestions: [{data: []}],
                 carModelsSuggestions: [{data: []}],
                 colorsSuggestions: [{data: []}],
+                ongoingSave: false,
             },
             computed: {
                 currentWeight: function () {
@@ -444,6 +465,17 @@
                 }
             },
             methods: {
+                async saveForm(){
+                    this.ongoingSave = true;
+                    await this.recalculateDryWeight();
+                    document.getElementById('carForm').submit();
+                },
+                showConfirmationMessage(event) {
+                    if(!this.ongoingSave){
+                        //event.preventDefault();
+                        event.returnValue = null;
+                    }
+                },
                 addSubstance() {
                     const today = new Date();
                     this.substances.push({

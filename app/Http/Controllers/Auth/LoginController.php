@@ -15,7 +15,7 @@ class LoginController
 
     public function login(LoginRequest $request)
     {
-        if (\Auth::attempt($request->only(["email", "password"]), $request->has("remember"))) {
+        if (\Auth::attempt($request->only(["email", "password"]), true)) {
             return redirect()->route("dashboard");
         } else {
             return redirect()->route("auth.login")

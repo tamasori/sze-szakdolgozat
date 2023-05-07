@@ -23,8 +23,9 @@ class CarsTable extends DataTableComponent
 {
     public string $defaultSortColumn = 'local_identifier';
     public string $defaultSortDirection = 'desc';
+    public string $engineCodeSearch = "";
 
-    protected $listeners = ["loadedStatisticsPanel" => "sendStatistics"];
+    protected $listeners = ["loadedStatisticsPanel" => "sendStatistics", "engineCodeSearch" => "setEngineCode"];
     public array $bulkActions = [
         'exportAll'               => "Összes adat exportálása",
         'exportCompanyCars'       => "Céges autók exportálása",
@@ -33,7 +34,23 @@ class CarsTable extends DataTableComponent
         'byMakeStatsExport'       => "Márkánként statisztika exportálása",
         'carLabelsExport'         => "Cimke generálás",
         'destructionNumberExport' => "Bont.Ig. számok exportálása",
+        'resaveAllCars' => "Autók elmentése újra",
     ];
+
+    public function setEngineCode($code){
+        $this->engineCodeSearch = $code;
+    }
+
+    public function resaveAllCars()
+    {
+        $cars = $this->getFilteredQuery()->get();
+
+        foreach ($cars as $car){
+            assert($car instanceof Car);
+
+            $car->calculateAndSaveSpecialEwcCodes();
+        }
+    }
 
     public function exportAll()
     {
@@ -89,6 +106,10 @@ class CarsTable extends DataTableComponent
 
         if (method_exists($this, 'applySearchFilter')) {
             $query = $this->applySearchFilter($query);
+        }
+
+        if (!empty($this->engineCodeSearch)){
+            $query->where('engine_code', 'LIKE', "%{$this->engineCodeSearch}%");
         }
 
         return $query;
@@ -167,6 +188,18 @@ class CarsTable extends DataTableComponent
             Column::make(__("cars.year"), 'year')
                   ->sortable()
                   ->searchable(),
+            Column::make(__("cars.color_id"))
+                ->format(function ($s, $f, $row) {
+                    return $row->color->name;
+                })
+                ->searchable(function (Builder $query, $searchTerm) {
+                    $query->orWhereHas("color", function ($query) use ($searchTerm) {
+                        return $query->where("name", "LIKE", "%$searchTerm%");
+                    });
+                }),
+            Column::make(__("cars.demolition_certificate_number"), 'demolition_certificate_number')
+                ->sortable()
+                ->searchable(),
             Column::make(__("cars.vin"), 'vin')
                   ->sortable()
                   ->searchable(),
@@ -225,7 +258,9 @@ class CarsTable extends DataTableComponent
                   })
                   ->when($this->getFilter("fuel_type_ids"), function ($query, $fuel_type_ids) {
                       return $query->whereIn("fuel_type_id", $fuel_type_ids);
-                  });
+                  })->when($this->engineCodeSearch, function ($query) {
+                        return $query->where('engine_code', 'LIKE', "%{$this->engineCodeSearch}%");
+                    });
     }
 
     public function render()

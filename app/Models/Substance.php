@@ -15,7 +15,7 @@ class Substance extends Model
 
     protected static function booted()
     {
-        static::addGlobalScope(new ExcludeSpecialEwcCodeFromSubstancesScope());
+        //static::addGlobalScope(new ExcludeSpecialEwcCodeFromSubstancesScope());
     }
 
     public function car()

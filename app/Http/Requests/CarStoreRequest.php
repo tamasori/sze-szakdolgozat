@@ -25,8 +25,8 @@ class CarStoreRequest extends FormRequest
     {
         return [
             "car" => "array|required",
-            "car.local_identifier" => "required|numeric|min:0|unique:cars,local_identifier" . ($this->route('car') !== null ? "," . $this->route('car') : ""),
-            "car.demolition_certificate_number" => "required|string|max:255|unique:cars,demolition_certificate_number",
+            "car.local_identifier" => "required|numeric|min:0|unique:cars,local_identifier" . ($this->route('car') !== null ? "," . $this->route('car')['id'] : ""),
+            "car.demolition_certificate_number" => "required|string|max:255|unique:cars,demolition_certificate_number" . ($this->route('car') !== null ? "," . $this->route('car')['id'] : ""),
             "car.date_of_demolition" => "required|date",
             "car.zip" => "required|max:4",
             "car.city" => "required|string|max:255",
@@ -39,17 +39,17 @@ class CarStoreRequest extends FormRequest
             "car.fuel_type_id" => "required|numeric|exists:fuel_types,id",
             "car.vin" => "required|string|max:255",
             "car.engine_code" => "required|string|max:255",
-            "car.engine_ccm" => "required|numeric|max:255",
-            "car.power" => "required|numeric|max:255",
+            "car.engine_ccm" => "required|numeric",
+            "car.power" => "required|numeric",
             "color" => "required|string|max:255",
-            "car.own_weight" => "required|numeric|max:255",
-            "car.retrieved_weight" => "required|numeric|max:255",
-            "car.dry_weight" => "required|numeric|max:255",
+            "car.own_weight" => "required|numeric",
+            "car.retrieved_weight" => "required|numeric",
+            "car.dry_weight" => "required|numeric",
             "car.note" => "nullable|string|max:255",
             "substances.*.date" => "required|date",
             "substances.*.ewc_code_id" => "required|numeric|exists:ewc_codes,id",
-            "substances.*.part_name" => "nullable|numeric|max:255",
-            "substances.*.mass" => "required|numeric|max:255",
+            "substances.*.part_name" => "nullable|max:255",
+            "substances.*.mass" => "required|numeric",
         ];
     }
 

@@ -239,7 +239,7 @@
             </tr>
             <tr>
                 <td>16 01 06</td>
-                <td>{{ $substances["160106"] ?? 0 }}</td>
+                <td>{{ ($substances["160106"] ?? 0) }}</td>
             </tr>
             <tr>
                 <td>16 01 17 (16 01 06 továbbontásból)</td>
@@ -290,6 +290,14 @@
                             + ($substances["160601"] ?? 0)
                             + ($substances["160106"] ?? 0)
                             + ($substances["Anyag-R4"] ?? 0)
+                            + ($substances["160117"] ?? 0)
+                            + ($substances["160118"] ?? 0)
+                            + ($substances["160119"] ?? 0)
+                            + ($substances["160112"] ?? 0)
+                            + ($substances["160120"] ?? 0)
+                            + ($substances["160103"] ?? 0)
+                            + ($substances["160199"] ?? 0)
+                            + ($substances["160801"] ?? 0)
                             )
             <tr>
                 <td>∑KI-1</td>

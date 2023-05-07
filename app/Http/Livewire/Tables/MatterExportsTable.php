@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Tables;
 use App\Helpers\UIHelper;
 use App\Models\EwcCode;
 use App\Models\Substance;
+use App\Scopes\ExcludeSpecialEwcCodeFromSubstancesScope;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
@@ -70,9 +71,10 @@ class MatterExportsTable extends DataTableComponent
     public function query(): Builder
     {
         return Substance::query()
+            ->withoutGlobalScope(ExcludeSpecialEwcCodeFromSubstancesScope::class)
             ->whereYear("date", $this->year)
             ->where("from_export", true)
-            ->orderBy("date")
-            ->orderBy("created_at");
+            ->orderByDesc("date")
+            ->orderByDesc("created_at");
     }
 }

@@ -6,6 +6,7 @@ use App\Models\Car;
 use App\Exports\NormalEwcExport;
 use App\Models\EwcCode;
 use App\Models\Substance;
+use App\Scopes\ExcludeSpecialEwcCodeFromSubstancesScope;
 use Meneses\LaravelMpdf\Facades\LaravelMpdf;
 use PDF;
 
@@ -49,6 +50,7 @@ class Ewc160104ExportService implements \App\Interfaces\EwcExportInterface
             'substances'               => $this->query()->get(),
             'hazardousSubstancesByCar' => Substance::selectRaw("car_id, SUM(mass) as mass")
                                                    ->hazardous()
+                                                    ->withGlobalScope('exclude', new ExcludeSpecialEwcCodeFromSubstancesScope())
                                                    ->whereYear("date", $this->year)
                                                    ->whereIn("car_id", Car::query()
                                                                           ->whereYear("date_of_demolition", $this->year)
@@ -68,6 +70,7 @@ class Ewc160104ExportService implements \App\Interfaces\EwcExportInterface
             'hazardousSubstancesByCar' => Substance::selectRaw("car_id, SUM(mass) as mass")
                                                    ->hazardous()
                                                    ->whereYear("date", $this->year)
+                ->withGlobalScope('exclude', new ExcludeSpecialEwcCodeFromSubstancesScope())
                                                    ->whereIn("car_id", Car::query()
                                                                           ->whereYear("date_of_demolition", $this->year)
                                                                           ->pluck("id"))

@@ -119,7 +119,7 @@
                                 <label>@lang("substances.kuj_number")</label>
                                 <input type="text" class="form-control" placeholder="@lang("substances.kuj_number")"
                                        name="kuj_number" v-model="kujNumber"
-                                       value="{{ old("kuj_number", $substances->kuj_number ?? "") }}">
+                                       value="{{ old("kuj_number", $substance->kuj_number ?? "") }}">
                             </div>
                         </div>
                         <div class="col-sm-3">
@@ -127,7 +127,7 @@
                                 <label>@lang("substances.ktj_number")</label>
                                 <input type="text" class="form-control" placeholder="@lang("substances.ktj_number")"
                                        name="ktj_number" v-model="ktjNumber"
-                                       value="{{ old("ktj_number", $substances->ktj_number ?? "") }}">
+                                       value="{{ old("ktj_number", $substance->ktj_number ?? "") }}">
                             </div>
                         </div>
                         <div class="col-sm-3">
@@ -135,7 +135,7 @@
                                 <label>@lang("substances.treatment_code")</label>
                                 <input type="text" class="form-control" placeholder="@lang("substances.treatment_code")"
                                        name="treatment_code"
-                                       value="{{ old("treatment_code", $substances->treatment_code ?? "") }}">
+                                       value="{{ old("treatment_code", $substance->treatment_code ?? "") }}">
                             </div>
                         </div>
                     </div>
@@ -145,7 +145,7 @@
                                 <label>@lang("substances.delivery_note")</label>
                                 <textarea class="form-control"
                                           name="delivery_note"
-                                          rows="1">{{ old("delivery_note", $substances->delivery_note ?? "") }}</textarea>
+                                          rows="1">{{ old("delivery_note", $substance->delivery_note ?? "") }}</textarea>
                             </div>
                         </duv>
                     </div>

@@ -14,6 +14,6 @@ class ExcludeSpecialEwcCodeFromSubstancesScope implements \Illuminate\Database\E
      */
     public function apply(Builder $builder, Model $model)
     {
-        return $builder->whereNotIn("ewc_code_id", EwcCode::select("id")->whereIn("code", ["160104","160106"])->get()->toArray());
+        return $builder->whereNotIn("ewc_code_id", EwcCode::select("id")->whereIn("code", ["160104","160106", "Anyag-R4"])->get()->toArray());
     }
 }

@@ -72,6 +72,8 @@ Route::group([
     Route::get("yearly-starters/{year}",[\App\Http\Controllers\YearlyStartersController::class,"index"])->name("yearly-starters.index");
     Route::post("yearly-starters/{year}/store",[\App\Http\Controllers\YearlyStartersController::class,"store"])->name("yearly-starters.store");
 
+    Route::get("ewc-export/{ewcCode:code}/{year}/{substance}/delete",[\App\Http\Controllers\EwcExportController::class,"delete"])->name("ewc-export.delete");
+    Route::post("ewc-export/{ewcCode:code}/{year}/save-ewc",[\App\Http\Controllers\EwcExportController::class,"store"])->name("ewc-export.store");
     Route::get("ewc-export/{ewcCode:code}/{year}",[\App\Http\Controllers\EwcExportController::class,"show"])->name("ewc-export.show");
     Route::get("ewc-export/{ewcCode:code}/{year}/xlsx",[\App\Http\Controllers\EwcExportController::class,"downloadXlsx"])->name("ewc-export.xlsx");
     Route::get("ewc-export/{ewcCode:code}/{year}/csv",[\App\Http\Controllers\EwcExportController::class,"downloadCsv"])->name("ewc-export.csv");

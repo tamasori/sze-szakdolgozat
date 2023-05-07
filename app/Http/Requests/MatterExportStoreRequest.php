@@ -30,6 +30,7 @@ class MatterExportStoreRequest extends FormRequest
             "mass" => ["nullable", "numeric"],
             "export_mass" => ["nullable", "numeric"],
             "pretreatment_mass" => ["nullable", "numeric"],
+            "collector_mass" => ["nullable", "numeric"],
             "disposal_mass" => ["nullable", "numeric"],
             "company_name" => ["nullable", "string"],
             "kuj_number" => ["nullable", "string"],
